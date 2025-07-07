@@ -36,8 +36,11 @@ async def register_init(app: FastAPI):
         prefix=settings.REQUEST_LIMITER_REDIS_PREFIX,
         http_callback=http_limit_callback,
     )
+    print("lifespan before")
 
     yield
+
+    print("lifespan after")
 
     # 关闭 redis 连接
     await redis_client.close()

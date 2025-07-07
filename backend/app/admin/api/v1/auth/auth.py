@@ -19,6 +19,7 @@ async def swagger_login(form_data: OAuth2PasswordRequestForm = Depends()) -> Get
     return GetSwaggerToken(access_token=token, user=user)  # type: ignore
 
 
+
 @router.post('/login', summary='验证码登录')
 async def user_login(request: Request, obj: AuthLoginParam) -> ResponseSchemaModel[GetLoginToken]:
     data = await auth_service.login(request=request, obj=obj)

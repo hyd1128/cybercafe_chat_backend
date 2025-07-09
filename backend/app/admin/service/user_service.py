@@ -52,6 +52,7 @@ class UserService:
             input_user = await user_dao.get_by_username(db, username=username)
             if not input_user:
                 raise errors.NotFoundError(msg='用户不存在')
+            # 超级管理员才能够更改用户名称
             superuser_verify(input_user)
             if input_user.username != obj.username:
                 _username = await user_dao.get_by_username(db, obj.username)
